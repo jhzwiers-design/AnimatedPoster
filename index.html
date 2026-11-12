@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Animated Poster — John Zwiers</title>
+<meta name="description" content="An animated poster for Herbert Bayer’s Great Ideas of Western Man: the blocks build the Tower of Babel, the tower comes down, and the blocks become the poster.">
+<meta property="og:title" content="Animated Poster — John Zwiers">
+<meta property="og:description" content="An animated poster for Herbert Bayer’s Great Ideas of Western Man: the blocks build the Tower of Babel, the tower comes down, and the blocks become the poster.">
+<meta property="og:image" content="https://jhzwiers-design.github.io/AnimatedPoster/images/share.jpg">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0e0e0e">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e0e0e;
+    --ink: #ffffff;
+    --body: #dcdcdc;
+    --muted: #9a9a9a;
+    --rule: #2e2e2e;
+    --pad: clamp(16px, 4vw, 40px);
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--body);
+    font: 400 16px/1.55 "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+    letter-spacing: .005em;
+  }
+  a { color: var(--ink); text-underline-offset: 3px; }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 var(--pad); }
+  header.top, footer {
+    display: flex; justify-content: space-between; gap: 16px;
+    font-size: 13px; color: var(--muted);
+    padding: 22px 0;
+  }
+  header.top b, footer b { color: var(--ink); font-weight: 600; }
+
+  /* 12-column grid; text hangs at about a third across, like the book */
+  .grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; }
+  .hang { grid-column: 5 / span 8; }
+  .side { grid-column: 1 / span 3; }
+
+  video, img { display: block; width: 100%; height: auto; }
+  video { background: #000; outline: 1px solid rgba(255,255,255,.75); outline-offset: -1px; aspect-ratio: 848 / 1080; }
+  video.wide { aspect-ratio: auto; }
+  .heroframe { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; align-items: end; }
+  .heroframe .v { grid-column: 1 / span 5; }
+  .heroframe .t { grid-column: 7 / span 6; }
+  .versions { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 36px; }
+  .made { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 36px; align-items: start; }
+  .made img.doc { background: #fff; }
+  .wide2 { margin-top: 36px; }
+  .showpair { display: grid; grid-template-columns: 5fr 7fr; gap: 24px; margin-top: 36px; align-items: start; }
+  .frame img { outline: 1px solid rgba(255,255,255,.75); outline-offset: -1px; }
+
+  h1, h2 { color: var(--ink); font-weight: 400; letter-spacing: -.018em; margin: 0; text-wrap: balance; }
+  h1 { font-size: clamp(34px, 5vw, 56px); line-height: 1.05; }
+  h2 { font-size: clamp(26px, 3.4vw, 38px); line-height: 1.1; }
+  .lede { font-size: clamp(17px, 1.6vw, 20px); line-height: 1.45; color: #e8e8e8; margin: 18px 0 0; max-width: 40em; text-wrap: pretty; }
+  p { margin: 0 0 12px; text-wrap: pretty; }
+  .cap { font-size: 13px; line-height: 1.45; color: #bdbdbd; margin-top: 10px; }
+  .cap b, .label { color: var(--ink); font-weight: 600; }
+  .label { font-size: 13px; display: block; margin-bottom: 6px; }
+
+  section { padding: clamp(56px, 9vw, 120px) 0 0; }
+  .hero { padding-top: 8px; }
+  .intro { margin-top: 40px; }
+  .meta { font-size: 13px; color: var(--muted); line-height: 1.6; padding-top: 8px; }
+  .meta b { color: var(--ink); font-weight: 600; }
+
+  .strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 40px; }
+  .steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 36px; }
+  .steps .num { color: var(--ink); font-weight: 600; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 28px; }
+
+  table { width: 100%; border-collapse: collapse; margin-top: 28px; font-size: 14px; }
+  td { padding: 11px 16px 11px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  tr:first-child td { border-top: 1px solid var(--rule); }
+  td:first-child { color: var(--muted); width: 32%; }
+  footer { margin-top: clamp(64px, 10vw, 140px); border-top: 1px solid var(--rule); }
+
+  @media (max-width: 860px) {
+    .hang, .side { grid-column: 1 / -1; }
+    .side { margin-bottom: 16px; }
+    .steps { grid-template-columns: repeat(2, 1fr); }
+    .strip { grid-template-columns: repeat(2, 1fr); }
+    .pair, .two, .made, .showpair { grid-template-columns: 1fr; }
+    .heroframe .v, .heroframe .t { grid-column: 1 / -1; }
+    .heroframe .t { margin-top: 28px; }
+    .versions { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <span><b>Animated Poster</b></span>
+    <span>John Zwiers</span>
+  </header>
+
+  <section class="hero" aria-label="Final animation">
+    <div class="heroframe">
+      <div class="v">
+        <video controls playsinline loop preload="metadata" poster="images/poster-final.jpg">
+          <source src="final.mp4" type="video/mp4">
+        </video>
+        <p class="cap"><b>Final animation</b> · 35 seconds, made to loop · as shown at the show</p>
+      </div>
+      <div class="t">
+        <div class="meta" style="margin-bottom:28px">
+          <b>Motion Design 1</b><br>
+          Professor Matt Normand<br>
+          Loyola University New Orleans<br>
+          September 18 – October 30, 2025
+        </div>
+        <h1>A tower of Babel.</h1>
+        <p class="lede">An animated poster for Herbert Bayer’s Great Ideas of Western Man, which sets a line by Ludwig Wittgenstein: “the limits of my language mean the limits of my world.” The blocks build the Tower of Babel, the tower comes down, and the blocks become the poster.</p>
+      </div>
+    </div>
+
+    <div class="strip">
+      <figure class="frame" style="margin:0"><img src="images/frame-01.jpg" alt="Coloured blocks drifting in from the edges of a white page" loading="lazy"><figcaption class="cap"><b>0:01</b> The blocks gather</figcaption></figure>
+      <figure class="frame" style="margin:0"><img src="images/frame-08.jpg" alt="The blocks stacked into a tower" loading="lazy"><figcaption class="cap"><b>0:08</b> The tower</figcaption></figure>
+      <figure class="frame" style="margin:0"><img src="images/frame-12.jpg" alt="The tower collapsing into nested frames" loading="lazy"><figcaption class="cap"><b>0:12</b> The tower comes down</figcaption></figure>
+      <figure class="frame" style="margin:0"><img src="images/frame-16.jpg" alt="The finished Bayer poster with its type" loading="lazy"><figcaption class="cap"><b>0:16</b> The poster</figcaption></figure>
+    </div>
+  </section>
+
+  <section aria-labelledby="made">
+    <div class="grid">
+      <div class="hang">
+        <h2 id="made">How it was made.</h2>
+        <p class="lede">Each student was given a poster from the Container Corporation of America’s Great Ideas series by spinning a wheel in class. Mine was Herbert Bayer’s.</p>
+      </div>
+    </div>
+    <div class="made">
+      <figure style="margin:0"><img class="doc" src="images/bayer-poster.jpg" alt="Herbert Bayer’s poster: nested coloured frames, each topped with a strip of clouds" loading="lazy"><figcaption class="cap"><span class="num">1 · The poster.</span> Herbert Bayer for the Container Corporation of America.</figcaption></figure>
+      <figure style="margin:0"><img class="doc" src="images/rebuild.jpg" alt="The poster rebuilt as layered shapes" loading="lazy"><figcaption class="cap"><span class="num">2 · The rebuild.</span> The solid colors redrawn as new shapes and the clouds cropped from the scan, ready to animate. Type set in Helvetica.</figcaption></figure>
+      <figure style="margin:0"><img src="images/after-effects.jpg" alt="The animation open in After Effects" loading="lazy"><figcaption class="cap"><span class="num">3 · After Effects.</span> Every block is its own layer, and each strip of clouds is a precomp so the sky drifts inside the frames.</figcaption></figure>
+    </div>
+    <figure class="wide2" style="margin-top:36px"><img class="doc" src="images/storyboard-final.jpg" alt="The final storyboard: blocks gather, stack into a tower, and settle into the poster" loading="lazy" style="background:#fff"><figcaption class="cap"><b>Final storyboard.</b> The scattered blocks gather, stack into a tower, come down into the poster’s frames, and the type appears.</figcaption></figure>
+    <div class="grid">
+      <div class="hang">
+        <div class="two">
+          <p><span class="label">The type</span>A big part of the project was making the poster’s type appear. The blocks act like a shield: as the biggest block passes over the bottom of the poster, the text appears behind it.</p>
+          <p><span class="label">Sound</span>The beginning of Coldplay’s “Coloratura,” distorted, with the harps, because it adds to the effect I was going for.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="process">
+    <div class="grid">
+      <div class="hang">
+        <h2 id="process">The process.</h2>
+        <p class="lede">Four versions from After Effects, before the final.</p>
+      </div>
+    </div>
+    <div class="versions">
+      <div>
+        <video controls playsinline preload="none" poster="images/poster-v4.jpg"><source src="v4.mp4" type="video/mp4"></video>
+        <p class="cap"><b>Version 4 · October 7</b><br>The first full build. No sound, and the poster stays on screen.</p>
+      </div>
+      <div>
+        <video controls playsinline preload="none" poster="images/poster-v5.jpg"><source src="v5.mp4" type="video/mp4"></video>
+        <p class="cap"><b>Version 5 · October 16</b><br>The ending: sound, and the blocks float up to clear the screen.</p>
+      </div>
+      <div>
+        <video controls playsinline preload="none" poster="images/poster-v6.jpg"><source src="v6.mp4" type="video/mp4"></video>
+        <p class="cap"><b>Version 6 · October 21</b><br>The ending refined.</p>
+      </div>
+      <div>
+        <video controls playsinline preload="none" poster="images/poster-v7.jpg"><source src="v7.mp4" type="video/mp4"></video>
+        <p class="cap"><b>Version 7 · October 30</b><br>Moving clouds inside every frame.</p>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="hang">
+        <div class="two">
+          <p><span class="label">Feedback</span>Professor Normand liked how the boxes came together so isometrically from the tower, and pushed for moving clouds inside the boxes using precomps. I left the clouds until the end of the project, but got it done.</p>
+          <p><span class="label">For the show</span>The final is a 35-second version that fades out, so it could play on a loop with the other animations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="show">
+    <div class="grid">
+      <div class="hang">
+        <h2 id="show">At the show.</h2>
+        <p class="lede">Playing on a vertical screen at the Great Ideas show at Loyola, between the printed posters from the series.</p>
+      </div>
+    </div>
+    <div class="showpair">
+      <div>
+        <video class="wide" controls playsinline muted preload="none" poster="images/poster-show.jpg" style="aspect-ratio:720/1280"><source src="show.mp4" type="video/mp4"></video>
+        <p class="cap"><b>At the show</b> · filmed November 26, 2025</p>
+      </div>
+      <figure class="frame" style="margin:0"><img src="images/show-room.jpg" alt="The gallery, with the Great Ideas posters on the wall" loading="lazy"><figcaption class="cap"><b>The gallery</b> · Great Ideas LOYNO</figcaption></figure>
+    </div>
+  </section>
+
+  <section aria-labelledby="credits">
+    <div class="grid">
+      <div class="hang">
+        <h2 id="credits">Credits.</h2>
+        <table>
+          <tr><td>Design</td><td>John Zwiers</td></tr>
+          <tr><td>Course</td><td>Motion Design 1, Loyola University New Orleans</td></tr>
+          <tr><td>Professor</td><td>Matt Normand</td></tr>
+          <tr><td>Original poster</td><td>Herbert Bayer for the Container Corporation of America, Great Ideas of Western Man. Quote by Ludwig Wittgenstein</td></tr>
+          <tr><td>Typeface</td><td>Helvetica</td></tr>
+          <tr><td>Sound</td><td>“Coloratura” by Coldplay</td></tr>
+          <tr><td>Made with</td><td>Adobe Photoshop, Adobe Illustrator, Adobe After Effects</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span><b>John Zwiers</b> · Graphic designer, New Orleans</span>
+    <span>2025</span>
+  </footer>
+</div>
+</body>
+</html>
